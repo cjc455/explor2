@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Private variables with javascript</h1>
+<p>variable c is a "private" variable only accessable to mod.</p>
+<button onclick="addc()">Click me to inc c</button>
+<p id="demo"></p>
+<h1>Object Constructors</h1>
+<p>Objects can be constructed using a function as a object wrapper.<p>
+<button onclick="create(10, 10, 10)">Create Oatmeal Object</button>
+<p id="demo2"></p>
+
+<script>
+//encapsulation
+function myFunction() {
+    document.getElementById("demo").innerHTML = "Hello World";
+}
+function addc() {
+  mod.addc();
+  console.log(mod.c); //this prints "undefined" to log
+}
+var mod = (function () {
+
+  var c = 0;
+
+  return {
+    addc: function () {
+      c += 1;
+      document.getElementById("demo").innerHTML = c;
+
+    }
+
+  };
+
+})();
+
+
+//constructors
+function createOatmeal(grams, chocolate, fruit) {
+  //this is new object that is being created
+  this.grams = grams;
+  this.chocolate = chocolate;
+  this.fruit = fruit;
+
+  this.getTasteLevel = function() {
+    return this.grams + this.chocolate + this.fruit;
+
+  };
+  return this;
+
+}
+function create(g, c, f){
+  var oatmeal = createOatmeal(g, c, f);
+  document.getElementById("demo2").innerHTML = "Oatmeal Taste Level:" + oatmeal.getTasteLevel();
+
+}
+</script>
+
+</body>
+</html>
